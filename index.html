@@ -43,18 +43,26 @@
                 <!-- Logo / Title -->
                 <div class="flex items-center justify-between mb-2 border-b border-Ct">
                     <h1 class="text-2xl font-bold text-gray-700" id="sidebar--title">MENU</h1>
-                    <button onclick="toggleSidebar()" id="showmore--btn" class="p-2 rounded">
+                    <button onclick="toggleSidebar()" id="showmore--btn" class="p-2 rounded" aria-label="menu logo">
                         <i data-lucide="menu"></i>
                     </button>
                 </div>
                 <!-- place persens in the side bar -->
-                <div id="person--places" class="h-3/4 mb-5 border-b border-Ct">
+                <div id="employee-" class="h-3/4 mb-5 border-b border-Ct">
                     <!-- add profile to this area -->
+    
+                    <div class="flex justify-between border border-gray-50 rounded-full w-[100%]">
+                        <img class="rounded-full w-[3em] h-[3em] " src="https://imgs.search.brave.com/AStpb1gBHGb5pKVt4m6DfogSshR5bxlH2nJnz5a-TSw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMjYv/NTcwLzY0OS9zbWFs/bC9jbG9zZS11cC1w/cm9maWxlLXZpZXct/b2YtcGVuc2l2ZS11/cHNldC1hZnJpY2Fu/LWFtZXJpY2FuLW1h/bi1sb29rLWluLWRp/c3RhbmNlLXRoaW5r/aW5nLW9mLXBlcnNv/bmFsLXByb2JsZW1z/LXRob3VnaHRmdWwt/c2FkLWJpcmFjaWFs/LW1hbGUtZmVlbC1k/ZXByZXNzZWQtbG9z/dC1pbi10aG91Z2h0/cy1wb25kZXJpbmct/aGF2aW5nLWRpbGVt/bWEtcGhvdG8uanBn" alt="image">
+                        <button  class="edit-btn text-yellow-500" type="button">Edit</button>
+                    </div>
                 </div>
                 <!-- add button -->
-                <button id="addperson" class="border p-2 rounded-full w-full grid place-self-end bg-gray-50 shadow-lg transform transition hover:scale-110 duration-300" type="button">Add A New Employee</button>
+                <button id="employee-add"
+                    class="border p-2 rounded-full w-full grid place-self-end bg-gray-50 shadow-lg transform transition hover:scale-110 duration-300"
+                    type="button">Add A New Employee</button>
+
             </aside>
-            
+
             <!-- workspace div-->
 
             <div id="building" class="flex-1 p-10 bg-[url(/assets/img/bg-image.jpg)] bg-no-repeat bg-contain">
@@ -70,6 +78,109 @@
 
                 <div id="other__roles" class="text-center self-center">Other roles</div>
             </div>
+
+            <!-- Popup Overlay -->
+
+            <div id="popup" class="hidden h-[100%] fixed inset-0 bg-black/40 flex justify-center z-[999] ">
+
+                <div
+                    class="bg-white justify-center w-3/4 p-6 rounded-xl shadow-lg animate-scale-up h-[100%] overflow-auto">
+                    <div class="md:grid-cols-2">
+
+                        <!-- Left Info -->
+
+                        <div class="flex flex-col gap-4">
+
+                            <!-- add worker-->
+                            <div class="flex justify-between">
+                                <div>
+                                    <h2 class="text-xl font-semibold my-6 mx-auto">Add Worker</h2>
+                                </div>
+                                <button type="button" id="remove-form" aria-label="remove form"><i data-lucide="x"
+                                        id="remove-form"></i></button>
+                            </div>
+
+
+                            <!-- input  -->
+
+
+                            <!-- First + Last Name -->
+                            <form id="add-worker-form">
+                                <input type="hidden" id="job-id">
+                                <label for="fullname" class="block font-medium mb-1">Name:</label>
+                                <input id="fullname" type="text" placeholder="El Habib"
+                                    class="w-full p-2 border rounded-md mb-4">
+                                <span class="fullname__error error" style="color: red;"></span>
+                                <!-- Role -->
+                                <label for="resume-roles" class="font-medium  ">Role</label>
+                                <select id="resume-roles" class="w-3/4-2 border p-1 rounded-md">
+                                    <option>Receptionist</option>
+                                    <option>IT Guy</option>
+                                    <option>Security</option>
+                                    <option>Cleaning</option>
+                                    <option>Other</option>
+                                </select>
+                                <!-- image input and privew -->
+                                <label for="photo__url" class="block font-medium mt-4">Photo (URL):</label>
+                                <input id="photo__url" type="url" placeholder="//https:image/..."
+                                    class="w-full p-2 border rounded-md">
+                                <span class="photo__error error" style="color: red"></span>
+                                <!-- image privew -->
+
+                                <div id="imgprivew-div"
+                                    class="rounded-full border mt-4 border-grey-100 w-[10em] h-[10em] justify-self-center">
+                                    <img id="imgprivew" class="justify-self-center mt-[50%]" src="" alt="image">
+                                </div>
+
+                                <label for="email" class="block font-medium mt-4">Email:</label>
+                                <input id="email" type="email" placeholder="example@example.com"
+                                    class="w-full p-2 border rounded-md">
+                                <span class="email__error error" style="color: red;"></span>
+
+                                <label for="phone" class="block font-medium mt-4">phone:</label>
+                                <input id="phone" type="number" placeholder="(123) 456-7890"
+                                    class="w-full p-2 border rounded-md">
+                                <span class="phone__error error" style="color: red;"></span>
+
+                                <!-- experiences-->
+                                <h2 class="font-bold">Experiences:</h2>
+                                <div class="experiences-block border p-4 mt-3 rounded-10 bg-bb">
+                                    <form>
+                                        <label for="company" class="block font-medium mt-4">Company:</label>
+                                        <input id="company" type="text" placeholder="Enter company"
+                                            class="company w-full p-2 border rounded-md">
+                                        <span class="company__error error" style="color: red;"></span>
+
+                                        <label for="roles" class="block font-medium mt-4">Role:</label>
+                                        <input id="roles" type="text"  placeholder="Enter role"
+                                            class="roles w-full p-2 border rounded-md">
+                                        <span class="roles__error hidden error" style="color: red;"></span>
+
+                                        <label for="from-date" class="block font-medium mt-4">from:</label>
+                                        <input id="from-date" type="date" class="from-date w-full p-2 border rounded-md">
+                                        <span class="from-date__error hidden error" style="color: red;"></span>
+
+                                        <label for="to-date" class="block font-medium mt-4">To:</label>
+                                        <input id="to-date" type="date" class="to-date w-full p-2 border rounded-md">
+                                        <span class="to-date__error hidden error" style="color: red;"></span>
+                                    </form>
+                                    <button type="button"
+                                        class="add-experiences mt-4 border rounded-full p-3 bg-gray-50">Add
+                                </div>
+                                <div id="experiences--container">
+                                    <!-- add adder experiences here -->
+                                </div>
+                            </form>
+
+                            <div id="add-worker--btn" class="text-white flex justify-end space-x-2">
+                                <button id="save-worker" type="button"
+                                    class="border rounded-full p-3 shadow-lg bg-blue-500 ">Save Worker</button>
+                                <button id="cancel-worker" type="button"
+                                    class="border rounded-full p-3 shadow-lg bg-gray-300">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
     </section>
 </body>
