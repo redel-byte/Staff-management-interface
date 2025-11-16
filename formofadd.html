@@ -1,0 +1,85 @@
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- Left Info -->
+    <div class="flex flex-col gap-4">
+
+        <!-- Language -->
+        <div class="flex justify-between">
+            <div>
+                <h2 class="text-xl font-semibold my-6 mx-auto">Add Worker</h2>
+            </div>
+            <button type="button" id="remove-form"><i data-lucide="x"></i></button>
+
+        </div>
+
+        <!-- First + Last Name -->
+        <div>
+            <label for="fullname" class="block font-medium mb-1">Name:</label>
+            <input id="fullname" type="text" placeholder="El Habib" class="w-full p-2 border rounded-md">
+            <span class="fullname__error error" style="color: red;"></span>
+        </div>
+        <!-- Role -->
+        <div class="flex flex-col">
+            <label for="resume-roles" class="font-medium mb-4">Role</label>
+            <select id="resume-roles" class="w-3/4-2 border p-1 rounded-md">
+                <option value="en">English</option>
+                <option value="ar">Arabic</option>
+                <option value="fr">French</option>
+            </select>
+        </div>
+
+        <!-- image input and privew -->
+        <div>
+            <label for="photo__url--div" class="block font-medium mb-1">Photo (URL):</label>
+            <input id="photo__url" type="url" placeholder="//https:image/..." class="w-full p-2 border rounded-md">
+        </div>
+        <span class="lname__error error" style="color: red"></span>
+        <div id="imgprivew-div" class="rounded-full border border-grey-100 w-10 h-10">
+            <img id="imgprivew" src="" alt="image">
+        </div>
+
+        <div>
+            <label for="email" class="block font-medium mb-1">Email:</label>
+            <input id="email" type="email" placeholder="example@example.com" class="w-full p-2 border rounded-md">
+            <span class="email__error error" style="color: red;"></span>
+        </div>
+
+        <div>
+            <label for="phone" class="block font-medium mb-1">phone:</label>
+            <input id="phone" type="number" placeholder="(123) 456-7890" class="w-full p-2 border rounded-md">
+            <span class="phone__error error" style="color: red;"></span>
+        </div>
+
+        <!-- experiences-->
+        <div>
+            <label for="Company" class="block font-medium mb-1">Company:</label>
+            <input id="Company" type="text" placeholder="Enter company" class="w-full p-2 border rounded-md">
+        </div>
+        <span class="company__error error" style="color: red;"></span>
+
+        <div>
+            <label for="roles" class="block font-medium mb-1">Role:</label>
+            <input id="roles" type="text" placeholder="Enter role" class="w-full p-2 border rounded-md">
+            <span class="roles__error hidden error" style="color: red;"></span>
+        </div>
+        <div>
+            <label for="from-date" class="block font-medium mb-1">from:</label>
+            <input id="from-data" type="date" class="w-full p-2 border rounded-md">
+            <span class="start-date__error hidden error" style="color: red;"></span>
+        </div>
+        <div>
+            <label for="-date" class="block font-medium mb-1">To:</label>
+            <input id="to-data" type="date" class="w-full p-2 border rounded-md">
+            <span class="end-date__error hidden error" style="color: red;"></span>
+        </div>
+        <div id="experiences--container">
+            <!-- add adder experiences here -->
+        </div>
+        <button type="button" id="add-experience" class="btn-add">Add Experience</button>
+
+    </div>
+
+    <div id="add-worker--btn" class="text-white flex-end ">
+    <button id="save-worker" type="button" class="border rounded-full p-5 shadow-lg bg-blue-500">Save Worker</button>
+    <button id="cancel-worker" type="button" class="border rounded-full p5 shadow-lg bg-gray-300">Cancel</button>
+    </div>
