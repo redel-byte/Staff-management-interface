@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script defer src="assets/js/main.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                screens: {
+                    sm: "480px",
+                    md: "768px",
+                    lg: "976px",
+                    xl: "1440px",
+                },
+                extend: {
+                    colors: {
+                        Ct: "#43C3DD",
+                        bb: "#D9EDF8",
+                        nb: "#004A94",
+                        Cb: "#001B2C",
+                    },
+                    //     fontFamily: {
+                    //         sans: ['Inter', 'system-ui', 'sans-serif'],
+                    //     },
+                },
+            },
+        }
+    </script>
+
+    <title>Staff Management</title>
+</head>
+
+<body>
+    <section>
+        <div class="flex">
+            <!-- Sidebar -->
+            <aside id="sidebar" class="w-64 h-screen bg-bb config p-5 space-y-6 transition-all duration-300">
+                <!-- Logo / Title -->
+                <div class="flex items-center justify-between mb-2 border-b border-Ct">
+                    <h1 class="text-2xl font-bold text-gray-700" id="sidebar--title">MENU</h1>
+                    <button onclick="toggleSidebar()" id="showmore--btn" class="p-2 rounded">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+                <!-- place persens in the side bar -->
+                <div id="person--places" class="h-3/4 mb-5 border-b border-Ct">
+                    <!-- add profile to this area -->
+                </div>
+                <!-- add button -->
+                <button id="addperson" class="border p-2 rounded-full w-full grid place-self-end bg-gray-50 shadow-lg transform transition hover:scale-110 duration-300" type="button">Add A New Employee</button>
+            </aside>
+            
+            <!-- workspace div-->
+
+            <div id="building" class="flex-1 p-10 bg-[url(/assets/img/bg-image.jpg)] bg-no-repeat bg-contain">
+                <div id="reception" class="text-center self-center">Reception</div>
+
+                <div id="server__room" class="text-center self-center">Server room</div>
+
+                <div id="security__room" class="text-center self-center">Security room</div>
+
+                <div id="manager" class="text-center self-center">Manager</div>
+
+                <div id="cleaning" class="text-center self-center">Cleaning</div>
+
+                <div id="other__roles" class="text-center self-center">Other roles</div>
+            </div>
+
+    </section>
+</body>
+
+</html>
