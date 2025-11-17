@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script defer src="assets/js/main.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script defer src="./assets/js/main.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
@@ -48,13 +49,12 @@
                     </button>
                 </div>
                 <!-- place persens in the side bar -->
-                <div id="employee-" class="h-3/4 mb-5 border-b border-Ct">
+                <div id="employee-list" class="h-3/4 mb-5 border-b border-Ct">
                     <!-- add profile to this area -->
-    
-                    <div class="flex justify-between border border-gray-50 rounded-full w-[100%]">
-                        <img class="rounded-full w-[3em] h-[3em] " src="https://imgs.search.brave.com/AStpb1gBHGb5pKVt4m6DfogSshR5bxlH2nJnz5a-TSw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMjYv/NTcwLzY0OS9zbWFs/bC9jbG9zZS11cC1w/cm9maWxlLXZpZXct/b2YtcGVuc2l2ZS11/cHNldC1hZnJpY2Fu/LWFtZXJpY2FuLW1h/bi1sb29rLWluLWRp/c3RhbmNlLXRoaW5r/aW5nLW9mLXBlcnNv/bmFsLXByb2JsZW1z/LXRob3VnaHRmdWwt/c2FkLWJpcmFjaWFs/LW1hbGUtZmVlbC1k/ZXByZXNzZWQtbG9z/dC1pbi10aG91Z2h0/cy1wb25kZXJpbmct/aGF2aW5nLWRpbGVt/bWEtcGhvdG8uanBn" alt="image">
-                        <button  class="edit-btn text-yellow-500" type="button">Edit</button>
-                    </div>
+                    <!--  -->
+                    <!--  -->
+
+
                 </div>
                 <!-- add button -->
                 <button id="employee-add"
@@ -66,17 +66,40 @@
             <!-- workspace div-->
 
             <div id="building" class="flex-1 p-10 bg-[url(/assets/img/bg-image.jpg)] bg-no-repeat bg-contain">
-                <div id="reception" class="text-center self-center">Reception</div>
+                <div id="reception" class="text-center self-center">
+                    <button class="w-10 h-10 bg-blue-700 rounded-lg">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
 
-                <div id="server__room" class="text-center self-center">Server room</div>
+                <div id="server__room" class="text-center self-center"> <button
+                        class="w-10 h-10 bg-blue-700 rounded-lg">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
 
-                <div id="security__room" class="text-center self-center">Security room</div>
+                <div id="security__room" class="text-center self-center"> <button
+                        class="w-10 h-10 bg-blue-700 rounded-lg">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
 
-                <div id="manager" class="text-center self-center">Manager</div>
+                <div id="manager" class="text-center self-center"> <button class="w-10 h-10 bg-blue-700 rounded-lg">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
 
-                <div id="cleaning" class="text-center self-center">Cleaning</div>
+                </div>
 
-                <div id="other__roles" class="text-center self-center">Other roles</div>
+                <div id="cleaning" class="text-center self-center"> <button class="w-10 h-10 bg-blue-700 rounded-lg">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+
+                <div id="other__roles" class="text-center self-center"> <button
+                        class="w-10 h-10 bg-blue-700 rounded-lg">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- Popup Overlay -->
@@ -109,38 +132,56 @@
                                 <input type="hidden" id="job-id">
                                 <label for="fullname" class="block font-medium mb-1">Name:</label>
                                 <input id="fullname" type="text" placeholder="El Habib"
-                                    class="w-full p-2 border rounded-md mb-4">
-                                <span class="fullname__error error" style="color: red;"></span>
+                                    class="fullname w-full p-2 border rounded-md mb-4">
+                                <span class="fullname-error" style="color: red;"></span>
                                 <!-- Role -->
-                                <label for="resume-roles" class="font-medium  ">Role</label>
+                                <label for="resume-roles" class="font-medium block mb-1 ">Role</label>
                                 <select id="resume-roles" class="w-3/4-2 border p-1 rounded-md">
+                                    <option>Other</option>
                                     <option>Receptionist</option>
                                     <option>IT Guy</option>
                                     <option>Security</option>
                                     <option>Cleaning</option>
-                                    <option>Other</option>
                                 </select>
+
                                 <!-- image input and privew -->
-                                <label for="photo__url" class="block font-medium mt-4">Photo (URL):</label>
+
+                                <label for="photo__url" class="hidden block font-medium mt-4">Photo (URL):</label>
                                 <input id="photo__url" type="url" placeholder="//https:image/..."
-                                    class="w-full p-2 border rounded-md">
-                                <span class="photo__error error" style="color: red"></span>
-                                <!-- image privew -->
+                                    class="photo__url w-full p-2 hidden border rounded-md">
+                                <span class="photo__url-error" style="color: red"></span>
 
-                                <div id="imgprivew-div"
-                                    class="rounded-full border mt-4 border-grey-100 w-[10em] h-[10em] justify-self-center">
-                                    <img id="imgprivew" class="justify-self-center mt-[50%]" src="" alt="image">
+                                <!-- photo preview -->
+
+                                <div
+                                    class="w-40 h-40 rounded-full bg-gray-200 flex justify-self-center items-center border">
+                                    <div>
+                                        <label id="photo__label" for="photo"
+                                            class="w-40 h-40 rounded-full border border-gray-300 bg-gray-100 flex flex-col justify-center items-center cursor-pointer hover:bg-gray-200 transition">
+                                            <svg class="w-10 h-10 text-gra  -500 mb-2" fill="none" stroke="currentColor"
+                                                stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M12 5v14M5 12h14" />
+                                            </svg>
+                                            <span class="text-gray-600 text-sm">Upload Photo</span>
+                                        </label>
+
+                                        <input id="photo" name="photo" type="file" accept=".png" class="hidden" />
+                                    </div>
+                                    <div id="imgprivew-div" class="hidden">
+                                        <img id="imgprivew" class="justify-self-center w-40 h-40 rounded-full" src=""
+                                            alt="image">
+                                    </div>
                                 </div>
-
                                 <label for="email" class="block font-medium mt-4">Email:</label>
                                 <input id="email" type="email" placeholder="example@example.com"
-                                    class="w-full p-2 border rounded-md">
-                                <span class="email__error error" style="color: red;"></span>
+                                    class="email w-full p-2 border rounded-md">
+                                <span class="email-error" style="color: red;"></span>
 
                                 <label for="phone" class="block font-medium mt-4">phone:</label>
-                                <input id="phone" type="number" placeholder="(123) 456-7890"
-                                    class="w-full p-2 border rounded-md">
-                                <span class="phone__error error" style="color: red;"></span>
+                                <input id="phone" type="tel" placeholder="(123) 456-7890"
+                                    class="phone w-full p-2 border rounded-md">
+                                <span class="phone-error" style="color: red;"></span>
 
                                 <!-- experiences-->
                                 <h2 class="font-bold">Experiences:</h2>
@@ -149,20 +190,21 @@
                                         <label for="company" class="block font-medium mt-4">Company:</label>
                                         <input id="company" type="text" placeholder="Enter company"
                                             class="company w-full p-2 border rounded-md">
-                                        <span class="company__error error" style="color: red;"></span>
+                                        <span class="company-error" style="color: red;"></span>
 
                                         <label for="roles" class="block font-medium mt-4">Role:</label>
-                                        <input id="roles" type="text"  placeholder="Enter role"
+                                        <input id="roles" type="text" placeholder="Enter role"
                                             class="roles w-full p-2 border rounded-md">
-                                        <span class="roles__error hidden error" style="color: red;"></span>
+                                        <span class="roles-error" style="color: red;"></span>
 
                                         <label for="from-date" class="block font-medium mt-4">from:</label>
-                                        <input id="from-date" type="date" class="from-date w-full p-2 border rounded-md">
-                                        <span class="from-date__error hidden error" style="color: red;"></span>
+                                        <input id="from-date" type="date"
+                                            class="from-date w-full p-2 border rounded-md">
+                                        <span class="from-date-error hidden error" style="color: red;"></span>
 
                                         <label for="to-date" class="block font-medium mt-4">To:</label>
                                         <input id="to-date" type="date" class="to-date w-full p-2 border rounded-md">
-                                        <span class="to-date__error hidden error" style="color: red;"></span>
+                                        <span class="to-date-error hidden error" style="color: red;"></span>
                                     </form>
                                     <button type="button"
                                         class="add-experiences mt-4 border rounded-full p-3 bg-gray-50">Add
@@ -172,7 +214,7 @@
                                 </div>
                             </form>
 
-                            <div id="add-worker--btn" class="text-white flex justify-end space-x-2">
+                            <div id="add-worker--div" class="text-white flex justify-end space-x-2">
                                 <button id="save-worker" type="button"
                                     class="border rounded-full p-3 shadow-lg bg-blue-500 ">Save Worker</button>
                                 <button id="cancel-worker" type="button"
@@ -181,6 +223,78 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Display Popup Overlay -->
+
+            <div id="worker-display-popup"
+                class="fixed justify-self-center inset-0 bg-black bg-opacity-40 backdrop-blur-sm hidden justify-center items-center z-50">
+
+                <!-- Popup Container -->
+                <div class="bg-white w-[90%] max-w-2xl p-6 rounded-xl shadow-2xl overflow-y-auto max-h-[90vh]">
+
+                    <!-- Header -->
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-semibold">Worker Details</h2>
+
+                        <button id="close-worker-popup" class="text-gray-600 hover:text-black">
+                            <i data-lucide="x"></i>
+                        </button>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="space-y-5">
+
+                        <!-- Profile Photo -->
+                        <div class="flex justify-center">
+                            <img id="display-photo" class="w-40 h-40 rounded-full border shadow-sm object-cover" src=""
+                                alt="Worker Photo">
+                        </div>
+
+                        <!-- Name -->
+                        <div>
+                            <p class="font-bold">Name:</p>
+                            <p id="display-name" class="text-gray-700"></p>
+                        </div>
+
+                        <!-- Role -->
+                        <div>
+                            <p class="font-bold">Role:</p>
+                            <p id="display-role" class="text-gray-700"></p>
+                        </div>
+
+                        <!-- Email -->
+                        <div>
+                            <p class="font-bold">Email:</p>
+                            <p id="display-email" class="text-gray-700"></p>
+                        </div>
+
+                        <!-- Phone -->
+                        <div>
+                            <p class="font-bold">Phone:</p>
+                            <p id="display-phone" class="text-gray-700"></p>
+                        </div>
+
+                        <!-- Experiences -->
+                        <div>
+                            <p class="font-bold">Experiences:</p>
+                            <div id="display-experiences" class="space-y-3">
+                                <!-- Experience items will be injected here -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="flex justify-end gap-2 mt-6">
+                        <button id="close-worker-popup-2" class="border rounded-full p-3 bg-gray-300 hover:bg-gray-400">
+                            Close
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
 
     </section>
 </body>
