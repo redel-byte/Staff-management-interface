@@ -1,0 +1,14 @@
+ #building {
+display: grid;
+grid-template-columns: repeat(8, 1fr);
+grid-template-rows: repeat(3, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+}
+
+#reception{ grid-area: 1 / 1 / 2 / 4; }
+#server__room{ grid-area: 1 / 7 / 2 / 9; }
+#security__room{ grid-area: 1 / 5 / 2 / 7; }
+#manager{ grid-area: 2 / 1 / 4 / 4; }
+#cleaning{ grid-area: 3 / 5 / 4 / 7; }
+#other__roles{ grid-area: 3 / 7 / 4 / 9; }
