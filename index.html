@@ -185,8 +185,8 @@
 
                                 <!-- experiences-->
                                 <h2 class="font-bold">Experiences:</h2>
-                                <div class="experiences-block border p-4 mt-3 rounded-10 bg-bb">
-                                    <form>
+                                <div class=" border p-4 mt-3 rounded-10 bg-bb">
+                                    <form class="experiences-block">
                                         <label for="company" class="block font-medium mt-4">Company:</label>
                                         <input id="company" type="text" placeholder="Enter company"
                                             class="company w-full p-2 border rounded-md">
@@ -228,14 +228,14 @@
             <!-- Display Popup Overlay -->
 
             <div id="worker-display-popup"
-                class="fixed justify-self-center inset-0 bg-black bg-opacity-40 backdrop-blur-sm hidden justify-center items-center z-50">
+                class="h-[100%] hidden fixed inset-0 bg-black/40 flex justify-center z-[999]">
 
                 <!-- Popup Container -->
                 <div class="bg-white w-[90%] max-w-2xl p-6 rounded-xl shadow-2xl overflow-y-auto max-h-[90vh]">
 
                     <!-- Header -->
                     <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-xl font-semibold">Worker Details</h2>
+                        <h2 class="text-xl font-semibold font-bold">Worker Profile</h2>
 
                         <button id="close-worker-popup" class="text-gray-600 hover:text-black">
                             <i data-lucide="x"></i>
@@ -253,31 +253,31 @@
 
                         <!-- Name -->
                         <div>
-                            <p class="font-bold">Name:</p>
+                            <h4 class="font-bold">Name:</p>
                             <p id="display-name" class="text-gray-700"></p>
                         </div>
 
                         <!-- Role -->
                         <div>
-                            <p class="font-bold">Role:</p>
+                            <h4 class="font-bold">Role:</p>
                             <p id="display-role" class="text-gray-700"></p>
                         </div>
 
                         <!-- Email -->
                         <div>
-                            <p class="font-bold">Email:</p>
+                            <h4 class="font-bold">Email:</p>
                             <p id="display-email" class="text-gray-700"></p>
                         </div>
 
                         <!-- Phone -->
                         <div>
-                            <p class="font-bold">Phone:</p>
+                            <h4 class="font-bold">Phone:</p>
                             <p id="display-phone" class="text-gray-700"></p>
                         </div>
 
                         <!-- Experiences -->
                         <div>
-                            <p class="font-bold">Experiences:</p>
+                            <h4 class="font-bold">Experiences:</p>
                             <div id="display-experiences" class="space-y-3">
                                 <!-- Experience items will be injected here -->
                             </div>
@@ -287,7 +287,7 @@
 
                     <!-- Buttons -->
                     <div class="flex justify-end gap-2 mt-6">
-                        <button id="close-worker-popup-2" class="border rounded-full p-3 bg-gray-300 hover:bg-gray-400">
+                        <button id="close-worker-profile" class="border rounded-full p-3 bg-gray-300 hover:bg-gray-400">
                             Close
                         </button>
                     </div>
