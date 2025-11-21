@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script defer src="./assets/js/main.js"></script>
+    <script defer src="./assets/js/omain.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -22,12 +22,10 @@
                     colors: {
                         Ct: "#43C3DD",
                         bb: "#D9EDF8",
-                        nb: "#004A94",
+                        shado: "#004A94",
                         Cb: "#001B2C",
                     },
-                    //     fontFamily: {
-                    //         sans: ['Inter', 'system-ui', 'sans-serif'],
-                    //     },
+
                 },
             },
         }
@@ -36,11 +34,11 @@
     <title>Staff Management</title>
 </head>
 
-<body>
+<body class="bg-bb">
     <section>
         <div class="flex">
             <!-- Sidebar -->
-            <aside id="sidebar" class="w-64 h-screen bg-bb config p-5 space-y-6 transition-all duration-300">
+            <aside id="sidebar" class="w-1/4 h-screen bg-Ct config p-5 space-y-6 transition-all duration-300">
                 <!-- Logo / Title -->
                 <div class="flex items-center justify-between mb-2 border-b border-Ct">
                     <h1 class="text-2xl font-bold text-gray-700" id="sidebar--title">MENU</h1>
@@ -58,48 +56,56 @@
                 </div>
                 <!-- add button -->
                 <button id="employee-add"
-                    class="border p-2 rounded-full w-full grid place-self-end bg-gray-50 shadow-lg transform transition hover:scale-110 duration-300"
+                    class="border p-2 rounded-full w-full grid place-self-end bg-gray-50 shadow-lg shadow-shado transform transition hover:scale-110 duration-300"
                     type="button">Add A New Employee</button>
 
             </aside>
 
             <!-- workspace div-->
+            <div id="building" class="flex-1 p-10 flex flex-col md:flex-row md:flex-wrap gap-6 sm:flex ">
 
-            <div id="building" class="flex-1 p-10 bg-[url(/assets/img/bg-image.jpg)] bg-no-repeat bg-contain">
+                <div id="conference" class=" text-center self-center">
+                    <h3 class="font-bold text-shado text-xl">Salle de conférence</h3>
+                    <div id="conference-space" class="w-full h-full"></div>
+                    <button id="conference-space-btn"
+                        class="text-xl font-bold absolute left-[40%] top-[70%] w-10 h-10 bg-blue-700 rounded-lg transform transition hover:scale-110 duration-300">+</button>
+                </div>
+
+                <div id="security" class=" text-center self-center">
+                    <h3 class="font-bold text-shado text-xl">Salle de sécurité</h3>
+                    <div id="security-space"></div>
+                    <button id="security-btn"
+                        class="font-bold text-xl absolute left-[37%] top-[70%] w-10 h-10 bg-blue-700 rounded-lg transform transition hover:scale-110 duration-300">+</button>
+                </div>
+
+                <div id="serveurs" class="text-center self-center">
+                    <h3 class="font-bold text-shado text-xl">Salle des serveurs</h3>
+                    <div id="serveurs-space"></div>
+                    <button id="serveurs-btn"
+                        class="text-xl font-bold absolute left-[37%] top-[70%] w-10 h-10 bg-blue-700 rounded-lg transform transition hover:scale-110 duration-300">+</button>
+                </div>
+
                 <div id="reception" class="text-center self-center">
-                    <button class="w-10 h-10 bg-blue-700 rounded-lg">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
+                    <h3 class="font-bold text-shado text-xl">Réception</h3>
+                    <div id="reception-space"></div>
+                    <button id="reception-btn"
+                        class="text-xl font-bold absolute left-[45%] transform transition hover:scale-110 duration-300 top-[80%] w-10 h-10 bg-blue-700 rounded-lg">+</button>
                 </div>
 
-                <div id="server__room" class="text-center self-center"> <button
-                        class="w-10 h-10 bg-blue-700 rounded-lg">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
+                <div id="personnel" class="text-center self-center">
+                    <h3 class="font-bold text-shado text-xl">Salle du personnel</h3>
+                    <div id="personnel-space"></div>
+                    <button id="personnel-btn"
+                        class="font-bold text-xl absolute left-[37%] top-[70%] w-10 h-10 bg-blue-700 rounded-lg transform transition hover:scale-110 duration-300">+</button>
                 </div>
 
-                <div id="security__room" class="text-center self-center"> <button
-                        class="w-10 h-10 bg-blue-700 rounded-lg">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
+                <div id="archives" class="text-center self-center">
+                    <h3 class="font-bold text-shado text-xl">Salle d’archives</h3>
+                    <div id="archives-space" class="w-full h-full"></div>
+                    <button id="archives-btn"
+                        class="text-xl absolute left-[37%] top-[70%] w-10 h-10 bg-blue-700 rounded-lg tranform trasition hover:scale-110 font-bold duration-300">+</button>
                 </div>
 
-                <div id="manager" class="text-center self-center"> <button class="w-10 h-10 bg-blue-700 rounded-lg">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-
-                </div>
-
-                <div id="cleaning" class="text-center self-center"> <button class="w-10 h-10 bg-blue-700 rounded-lg">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
-
-                <div id="other__roles" class="text-center self-center"> <button
-                        class="w-10 h-10 bg-blue-700 rounded-lg">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
             </div>
 
             <!-- Popup Overlay -->
@@ -119,8 +125,8 @@
                                 <div>
                                     <h2 class="text-xl font-semibold my-6 mx-auto">Add Worker</h2>
                                 </div>
-                                <button type="button" id="remove-form" aria-label="remove form"><i data-lucide="x"
-                                        id="remove-form"></i></button>
+                                <button type="button" class="font-bold text-xl" id="remove-form"
+                                    aria-label="remove form">X</button>
                             </div>
 
 
@@ -142,6 +148,7 @@
                                     <option>IT Guy</option>
                                     <option>Security</option>
                                     <option>Cleaning</option>
+                                    <option>Manager</option>
                                 </select>
 
                                 <!-- image input and privew -->
@@ -185,30 +192,9 @@
 
                                 <!-- experiences-->
                                 <h2 class="font-bold">Experiences:</h2>
-                                <div class=" border p-4 mt-3 rounded-10 bg-bb">
-                                    <form class="experiences-block">
-                                        <label for="company" class="block font-medium mt-4">Company:</label>
-                                        <input id="company" type="text" placeholder="Enter company"
-                                            class="company w-full p-2 border rounded-md">
-                                        <span class="company-error" style="color: red;"></span>
-
-                                        <label for="roles" class="block font-medium mt-4">Role:</label>
-                                        <input id="roles" type="text" placeholder="Enter role"
-                                            class="roles w-full p-2 border rounded-md">
-                                        <span class="roles-error" style="color: red;"></span>
-
-                                        <label for="from-date" class="block font-medium mt-4">from:</label>
-                                        <input id="from-date" type="date"
-                                            class="from-date w-full p-2 border rounded-md">
-                                        <span class="from-date-error hidden error" style="color: red;"></span>
-
-                                        <label for="to-date" class="block font-medium mt-4">To:</label>
-                                        <input id="to-date" type="date" class="to-date w-full p-2 border rounded-md">
-                                        <span class="to-date-error hidden error" style="color: red;"></span>
-                                    </form>
-                                    <button type="button"
-                                        class="add-experiences mt-4 border rounded-full p-3 bg-gray-50">Add
-                                </div>
+                                <button type="button"
+                                    class="border p-4 mt-3 bg-bb w-[100%] transform transition hover:scale-x-90 duration-300  shadow-lg shadow-shado add-experiences rounded-xl">Add
+                                </button>
                                 <div id="experiences--container">
                                     <!-- add adder experiences here -->
                                 </div>
@@ -237,8 +223,9 @@
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-xl font-semibold font-bold">Worker Profile</h2>
 
-                        <button id="close-worker-popup" class="text-gray-600 hover:text-black">
-                            <i data-lucide="x"></i>
+                        <button id="close-worker-popup"
+                            class="font-bold text-xl text-gray-600 hover:text-black font-bold">
+                            X
                         </button>
                     </div>
 
@@ -254,33 +241,33 @@
                         <!-- Name -->
                         <div>
                             <h4 class="font-bold">Name:</p>
-                            <p id="display-name" class="text-gray-700"></p>
+                                <p id="display-name" class="text-gray-700"></p>
                         </div>
 
                         <!-- Role -->
                         <div>
                             <h4 class="font-bold">Role:</p>
-                            <p id="display-role" class="text-gray-700"></p>
+                                <p id="display-role" class="text-gray-700"></p>
                         </div>
 
                         <!-- Email -->
                         <div>
                             <h4 class="font-bold">Email:</p>
-                            <p id="display-email" class="text-gray-700"></p>
+                                <p id="display-email" class="text-gray-700"></p>
                         </div>
 
                         <!-- Phone -->
                         <div>
                             <h4 class="font-bold">Phone:</p>
-                            <p id="display-phone" class="text-gray-700"></p>
+                                <p id="display-phone" class="text-gray-700"></p>
                         </div>
 
                         <!-- Experiences -->
                         <div>
                             <h4 class="font-bold">Experiences:</p>
-                            <div id="display-experiences" class="space-y-3">
-                                <!-- Experience items will be injected here -->
-                            </div>
+                                <div id="display-experiences" class="space-y-3">
+                                    <!-- Experience items will be injected here -->
+                                </div>
                         </div>
 
                     </div>
@@ -295,6 +282,36 @@
                 </div>
             </div>
 
+            <!-- popup for adding employee to rooms -->
+
+            <div id="worker-display-popup-room"
+                class="h-[100%] hidden fixed inset-0 bg-black/40 flex justify-center z-[999]">
+
+                <!-- Popup Container -->
+                <div class="bg-white w-[90%] max-w-2xl p-6 rounded-xl shadow-2xl overflow-y-auto max-h-[90vh]">
+
+                    <!-- Header -->
+                    <div class="flex justify-between items-center mb-4 justify-self-end">
+                        <button id="close-worker-popup-room"
+                            class="text-xl font-bold w-10 h-10 text-gray-600 hover:text-black">
+                            X
+                        </button>
+                    </div>
+                    <div id="worker-preview" class="h-[100%] w-[100%]">
+                        <!-- add worker to this div-->
+
+
+                    </div>
+                    <!-- <div class="space-y-5"> -->
+
+                    <!-- <div class="flex justify-end  gap-2 mt-6">
+                            <button id="close-worker-profile"
+                                class="border rounded-full mt-[100%] p-3 bg-gray-300 hover:bg-gray-400">
+                                Close
+                            </button>
+                        </div>
+                    </div> -->
+                </div>
 
     </section>
 </body>
