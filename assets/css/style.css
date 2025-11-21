@@ -1,14 +1,118 @@
- #building {
-display: grid;
-grid-template-columns: repeat(8, 1fr);
-grid-template-rows: repeat(3, 1fr);
-grid-column-gap: 0px;
-grid-row-gap: 0px;
+#building {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }
 
-#reception{ grid-area: 1 / 1 / 2 / 4; }
-#server__room{ grid-area: 1 / 7 / 2 / 9; }
-#security__room{ grid-area: 1 / 5 / 2 / 7; }
-#manager{ grid-area: 2 / 1 / 4 / 4; }
-#cleaning{ grid-area: 3 / 5 / 4 / 7; }
-#other__roles{ grid-area: 3 / 7 / 4 / 9; }
+#conference {
+    grid-area: 1 / 1 / 2 / 4;
+}
+
+#security {
+    grid-area: 1 / 7 / 2 / 9;
+}
+
+#serveurs {
+    grid-area: 1 / 5 / 2 / 7;
+}
+
+#reception {
+    grid-area: 2 / 1 / 4 / 4;
+}
+
+#personnel {
+    grid-area: 3 / 5 / 4 / 7;
+}
+
+#archives {
+    grid-area: 3 / 7 / 4 / 9;
+}
+
+#conference,
+#security,
+#serveurs,
+#reception,
+#personnel,
+#archives {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#conference {
+    background-image: url(../img/conference.jpg);
+}
+
+#security {
+    background-image: url(../img/security.jpg);
+}
+
+#serveurs {
+    background-image: url(../img/serveurs.jpg);
+}
+
+#reception {
+    background-image: url(../img/reception.jpg);
+}
+
+#personnel {
+    background-image: url(../img/personel.jpg);
+}
+
+#archives {
+    background-image: url(../img/archives.jpg);
+}
+
+#conference::after,
+#security::after,
+#serveurs::after,
+#reception::after,
+#personnel::after,
+#archives::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 0, 0, 0.4);
+    /* z-index: 1; */
+    pointer-events: none;
+}
+
+#conference,
+#security,
+#serveurs,
+#reception,
+#personnel,
+#archives {
+    position: relative;
+    z-index: 999;
+}
+
+
+@media (max-width: 900px) {
+    #building {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    #building>div {
+        flex: 1 1 calc(50% - 10px);
+        height: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+    #building {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #building>div {
+        flex: 1 1 100%;
+        height: 200px;
+    }
+}
