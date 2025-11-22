@@ -109,6 +109,8 @@ document.addEventListener("click", (e) => {
         popup?.classList.add("hidden");
         resetImg();
         resetBlocks();
+        document.getElementById("job-id").value = "";
+        // requestId
     }
 
     if (e.target?.classList.contains("add-experiences")) {
@@ -126,7 +128,6 @@ document.addEventListener("click", (e) => {
         Object.keys(targetDivData).forEach(roomId => {
             displayEmployeInRooms(targetDivData[roomId], document.getElementById(roomId));
         });
-
         displayEmployees(getWorkers())
     }
 
@@ -136,6 +137,8 @@ document.addEventListener("click", (e) => {
 
         if (e.target.classList.contains("model-edit-btn")) {
             openEditWorker(id);
+            // resetImg();
+            // addWorkerForm?.reset();
         }
         if (e.target.classList.contains("model-delete-btn")) {
             deleteWorker(id);
@@ -148,18 +151,66 @@ document.addEventListener("click", (e) => {
             workerProfile(id);
 
         }
-
-        // relocateEmployee(id);
-        // if(e.target.classList.contains("Listing")){
-        //     console.log(id)
-        // }
     }
+
+    // const list = Object.keys(targetDivData);
+    // for (let i = 0; i < list.length; i++) {
+
+    //     const key = list[i];
+    //     const arrayInside = targetDivData[key];
+
+    //     if (arrayInside.length) {
+    //         const divId = key.replace("-space", "");
+    //         const el = document.getElementById(divId);
+    //         if (el) {
+    //             el.classList.toggle("no-after")
+    //         }
+    //     }
+    // } for (let i = 0; i < list.length; i++) {
+
+    //     const key = list[i];
+    //     const arrayInside = targetDivData[key];
+
+    //     if (arrayInside.length) {
+    //         const divId = key.replace("-space", "");
+    //         const el = document.getElementById(divId);
+    //         if (!el) {
+    //             el.classList.remove("no-after")
+    //         }
+    //     }
+    // }
+
+
+
+
+
+
+
+
 });
 
+//======================================== lisstening on arrays;
+function updateRoomsColor() {
+    const list = Object.keys(targetDivData);
 
+    for (let i = 0; i < list.length; i++) {
+        const key = list[i];
+        const arrayInside = targetDivData[key];
+        const divId = key.replace("-space", "");
+        const el = document.getElementById(divId);
 
+        if (!el) continue;
 
-//========================================
+        if (arrayInside.length > 0) {
+            el.classList.add("no-after");
+        } else {
+            el.classList.remove("no-after");
+        }
+    }
+}
+
+setInterval(updateRoomsColor, 300);
+//======================================== remove employees from the rooms with click ====
 function relocateEmployee(workerId) {
     let selectedWorker = null;
 
@@ -176,7 +227,6 @@ function relocateEmployee(workerId) {
     if (!selectedWorker) return;
 
     // targetDivData[targetDivId].push(selectedWorker);
-
     Object.keys(targetDivData).forEach(roomId => {
         displayEmployeInRooms(targetDivData[roomId], document.getElementById(roomId));
     });
@@ -363,7 +413,7 @@ function displayEmployees(workers) {
 
 function openEditWorker(id) {
     const worker = getWorkers().find(w => w.id === id);
-    if (!worker) return;
+    // if (!worker) return;
 
     document.getElementById("job-id").value = worker.id;
     document.getElementById("fullname").value = worker.fullName;
@@ -371,14 +421,15 @@ function openEditWorker(id) {
     document.getElementById("email").value = worker.email;
     document.getElementById("phone").value = worker.phone;
 
-    if (photoUrlInput) photoUrlInput.value = worker.image;
+    // if (photoUrlInput) photoUrlInput.value = worker.image;
 
-    if (worker.image) {
-        imgPrivew.src = worker.image;
-        imgprivewDiv.classList.remove("hidden");
-        photoLabel.classList.add("hidden");
-        imageUrl = worker.image;
-    } else resetImg();
+    // if (worker.image) {
+    //     imgPrivew.src = worker.image;
+    //     imgprivewDiv.classList.remove("hidden");
+    //     photoLabel.classList.add("hidden");
+    //     imageUrl = worker.image;
+    // } 
+    resetImg();
 
     const container = document.getElementById("experiences--container");
     container.innerHTML = "";
@@ -404,6 +455,7 @@ function openEditWorker(id) {
     });
 
     popup.classList.remove("hidden");
+    // addWorkerForm.reset();
 }
 
 function workerProfile(id) {
@@ -459,13 +511,21 @@ const personnelRoom = [];
 const securityRoom = [];
 const archivesRoom = [];
 
+const rooms = {
+    conferenceRoom: "conference",
+    securityRoom: "security",
+    receptionRoom: "reception",
+    personnelRoom: "personnel",
+    archivesRoom: "archives"
+}
+
 const roomFilters = {
     "conference-space-btn": null,
-    "reception-btn": ["Receptionist", "Manager"],
-    "serveurs-btn": ["IT Guy"],
-    "personnel-btn": ["Security", "Other"],
-    "security-btn": ["Security", "Manager"],
-    "archives-btn": ["Manager"]
+    "reception-btn": ["Receptionist", "Manager", "Cleaning"],
+    "serveurs-btn": ["IT Guy", "Manager", "Cleaning"],
+    "personnel-btn": ["Security", "Other", "Receptionist", "Manager"],
+    "security-btn": ["Security", "Manager", "Cleaning"],
+    "archives-btn": ["Manager", "Receptionist", "Security", "IT Guy"]
 };
 
 const roomTargetDivs = {
@@ -515,16 +575,16 @@ function displayEmployeesInList(workers, preview = document.getElementById("work
     }
     );
 }
+let count = 0;
 function displayEmployeInRooms(workers, preview = document.getElementById("worker-preview")) {
     if (!preview) return;
     if (!workers || typeof workers !== "object") return;
-
 
     preview.innerHTML = "";
     workers.forEach(worker => {
         if (!worker || typeof worker !== "object") return;
         if (!worker.id) return;
-
+        count++;
         const div = document.createElement("div");
         div.classList.add("listing-workers-rooms");
         div.dataset.id = worker.id;
@@ -539,10 +599,8 @@ function displayEmployeInRooms(workers, preview = document.getElementById("worke
                 </div>
             `;
         preview.appendChild(div);
-    }
-    );
+    });
 }
-
 
 // ============================= LOCATE EMPLOYEE ============================
 
@@ -560,9 +618,28 @@ function locateEmployees(workerId, targetDivId) {
     // refresh room previews
     Object.keys(targetDivData).forEach(key => {
         displayEmployeInRooms(targetDivData[key], document.getElementById(key));
+        employeeNum(document.getElementById(key.replace("-space", "")), count);
+        count = 0;
     });
 }
+//============================== Number of Employees in one room================
+// "conference-space"
+// "reception-space"
+// "serveurs-space"
+// "personnel-space"
+// "security-space"
+// "archives-space"
 
+function employeeNum(targetRoom, count) {
+    const span = targetRoom.querySelector("h3 span");
+    if (targetRoom === "conference") span.textContent= `${count}/3`
+    if (targetRoom === "reception") span.textContent = `${count}/6`
+    if (targetRoom === "serveurs") span.textContent = `${count}/3`
+    if (targetRoom === "personnel") span.textContent = `${count}/2`
+    if (targetRoom === "security") span.textContent = `${count}/2`
+    if (targetRoom === "archives") span.textContent = `${count}/2`
+    // console.log(span,targetRoom);
+}
 // ============================= ROOM BUTTONS ============================
 
 document.addEventListener("click", function (event) {
