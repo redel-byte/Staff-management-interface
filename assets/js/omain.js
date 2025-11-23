@@ -74,11 +74,10 @@ function addNewExperience() {
 
         <label class="block font-medium mt-2">From:</label>
         <input type="date" class="from-date w-full p-2 border rounded-md">
-        <span class="from-date-error hidden error" style="color: red;"></span>
 
         <label class="block font-medium mt-2">To:</label>
         <input type="date" class="to-date w-full p-2 border rounded-md">
-        <span class="to-date-error hidden error" style="color: red;"></span>
+        <span class="date-error error" style="color: red;"></span>
 
         <div class="mt-3 flex gap-2">
             <button type="button" class="remove-experience border rounded p-2">Remove</button>
@@ -189,7 +188,7 @@ document.addEventListener("click", (e) => {
 
 });
 
-//======================================== lisstening on arrays;
+//============================ lisstening on arrays ==================
 function updateRoomsColor() {
     const list = Object.keys(targetDivData);
 
@@ -286,19 +285,48 @@ const validationRules = {
     roles: {
         regex: /^[a-zA-Z0-9\s,.'-]{2,50}$/,
         message: "Role must be 2-50 characters long."
+    },
+    date: {
+        type: "date-range",
+        message: "Invalid: 'From' must be older than 'To'."
     }
-};
+}
+    ;
 
 function toggleError(field, show, message = "") {
-    document.querySelectorAll(`.${field}-error`).forEach(err => err.textContent = message);
-    document.querySelectorAll(`.${field}`).forEach(input => {
-        input.classList.toggle("border-red-500", show);
-        input.classList.toggle("border-green-500", !show);
-    });
+    if (show) {
+        document.querySelectorAll(`.${field}-error`).forEach(err => err.textContent = message);
+        document.querySelectorAll(`.${field}`).forEach(input => {
+            input.classList.toggle("border-red-500", show);
+            input.classList.toggle("border-green-500", !show);
+        });
+    }
 }
 
-function validateField(field, value) {
+function validateDateRange(from, to) {
+    if (!from || !to) return false;
+
+    const fromDate = new Date(from);
+    const toDate = new Date(to);
+
+    return fromDate <= toDate;
+}
+
+function validateField(field, value, extra = {}) {
     const rule = validationRules[field];
+
+    if (rule?.type === "date-range") {
+        let dateIsValid = validateDateRange(extra.from, extra.to);
+
+        if (!dateIsValid) {
+            toggleError(field, true, rule.message);
+            return false;
+        }
+
+        toggleError(field, false);
+        return true;
+    }
+
     if (rule && !rule.regex.test(value)) {
         toggleError(field, true, rule.message);
         return false;
@@ -310,11 +338,21 @@ function validateField(field, value) {
 function validateForm() {
     let ok = true;
     for (const field in validationRules) {
+
+        if (field === "date") continue;
         const el = document.getElementById(field);
         if (el && !validateField(field, el.value.trim())) {
             ok = false;
         }
     }
+
+    document.querySelectorAll(".experiences-block").forEach(block => {
+        const from = block.querySelector(".from-date")?.value;
+        const to = block.querySelector(".to-date")?.value;
+        const valid = validateField("date", "", { from, to });
+        if (!valid) ok = false;
+    });
+
     return ok;
 }
 
@@ -445,7 +483,9 @@ function openEditWorker(id) {
             <span class="roles-error" style="color:red;"></span>
 
             <input type="date" class="from-date w-full p-2 border rounded-md mt-2" value="${exp.fromDate}">
+
             <input type="date" class="to-date w-full p-2 border rounded-md mt-2" value="${exp.toDate}">
+            <span class="date-error" style="color:red;"></span>
 
             <div class="mt-3 flex gap-2">
               <button type="button" class="remove-experience border rounded p-2">Remove</button>
@@ -455,7 +495,6 @@ function openEditWorker(id) {
     });
 
     popup.classList.remove("hidden");
-    // addWorkerForm.reset();
 }
 
 function workerProfile(id) {
@@ -575,6 +614,7 @@ function displayEmployeesInList(workers, preview = document.getElementById("work
     }
     );
 }
+
 let count = 0;
 function displayEmployeInRooms(workers, preview = document.getElementById("worker-preview")) {
     if (!preview) return;
@@ -622,7 +662,7 @@ function locateEmployees(workerId, targetDivId) {
         count = 0;
     });
 }
-//============================== Number of Employees in one room================
+//============================== Number of Employees in one room ================
 // "conference-space"
 // "reception-space"
 // "serveurs-space"
@@ -631,15 +671,17 @@ function locateEmployees(workerId, targetDivId) {
 // "archives-space"
 
 function employeeNum(targetRoom, count) {
-    const span = targetRoom.querySelector("h3 span");
-    if (targetRoom === "conference") span.textContent= `${count}/3`
-    if (targetRoom === "reception") span.textContent = `${count}/6`
-    if (targetRoom === "serveurs") span.textContent = `${count}/3`
-    if (targetRoom === "personnel") span.textContent = `${count}/2`
-    if (targetRoom === "security") span.textContent = `${count}/2`
-    if (targetRoom === "archives") span.textContent = `${count}/2`
-    // console.log(span,targetRoom);
+    const span = targetRoom?.querySelector("h3 span");
+    if (span) {
+        if (targetRoom.id === "conference") span.textContent = `${count}/3`
+        if (targetRoom.id === "reception") span.textContent = `${count}/6`
+        if (targetRoom.id === "serveurs") span.textContent = `${count}/3`
+        if (targetRoom.id === "personnel") span.textContent = `${count}/2`
+        if (targetRoom.id === "security") span.textContent = `${count}/2`
+        if (targetRoom.id === "archives") span.textContent = `${count}/2`
+    }
 }
+setInterval(employeeNum, 300);
 // ============================= ROOM BUTTONS ============================
 
 document.addEventListener("click", function (event) {
