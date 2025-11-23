@@ -78,7 +78,6 @@
     pointer-events: none;
 }
 
-#archives::after,
 #conference::after,
 #archives::after {
     content: "";
@@ -86,7 +85,6 @@
     inset: 0;
     pointer-events: none;
 }
-
 
 #conference,
 #security,
@@ -99,7 +97,7 @@
 }
 
 
-@media (max-width: 900px) {
+@media (min-width: 768px) and (max-width: 1023px) {
     #building {
         display: flex;
         flex-wrap: wrap;
@@ -108,14 +106,30 @@
 
     #building>div {
         flex: 1 1 calc(50% - 10px);
-        height: 200px;
+        height: 220px;
     }
 }
 
-@media (max-width: 600px) {
+
+@media (min-width: 1024px) and (max-width: 1279px) {
     #building {
         display: flex;
         flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    #building>div {
+        flex: 1 1 calc(33.33% - 15px);
+        height: 250px;
+    }
+}
+
+
+@media (max-width: 767px) {
+    #building {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
     }
 
     #building>div {
@@ -123,6 +137,21 @@
         height: 200px;
     }
 }
+
+@media (max-width: 425px) {
+    #building {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    #building>div {
+        width: 100% !important;
+        flex: none !important;
+        height: 180px !important;
+    }
+}
+
 
 .no-after::after {
     content: none !important;
